@@ -15,6 +15,8 @@ jobs:
         chmod +x coinbrew
         ./coinbrew fetch Clp@1.17.6
         ./coinbrew build Clp --enable-static --no-third-party
+        mv dist/lib/libClp.a dist/lib/libClp-static.a
+        mv dist/lib/libCoinUtils.a dist/lib/libCoinUtils-static.a
            
     - uses: actions/upload-artifact@v2
       with:
@@ -36,6 +38,8 @@ jobs:
         chmod +x coinbrew
         ./coinbrew fetch Clp@1.17.6
         ./coinbrew build Clp --enable-static --no-third-party
+        mv dist/lib/libClp.a dist/lib/libClp-static.a
+        mv dist/lib/libCoinUtils.a dist/lib/libCoinUtils-static.a
            
     - uses: actions/upload-artifact@v2
       with:
@@ -58,11 +62,13 @@ jobs:
         update: true
         install: flex bison make gcc diffutils mingw-w64-x86_64-toolchain mingw-w64-x86_64-python-pip mingw-w64-x86_64-python-numpy mingw-w64-x86_64-lapack mingw-w64-x86_64-openblas mingw-w64-x86_64-libxml2 mingw-w64-x86_64-cmake git patch
         
-    - name: Compiling libSBML
+    - name: Compiling libClp
       run: |
         chmod +x coinbrew
         ./coinbrew fetch Clp@1.17.6
         ./coinbrew build Clp --enable-static --no-third-party
+        mv dist/lib/libClp.a dist/lib/libClp-static.a
+        mv dist/lib/libCoinUtils.a dist/lib/libCoinUtils-static.a
            
     - uses: actions/upload-artifact@v2
       with:
