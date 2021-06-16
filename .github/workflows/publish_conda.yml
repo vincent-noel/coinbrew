@@ -1,0 +1,71 @@
+name: Publish package
+
+on:
+  push:
+
+jobs:
+
+  build_linux:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile libClp
+      run: |
+        chmod +x coinbrew
+        ./coinbrew fetch Clp@1.17.6
+        ./coinbrew build Clp --enable-static --no-third-party
+           
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Clp-1.17.6-linux64
+        path: /home/runner/work/coinbrew/coinbrew/dist/*
+        
+  build_macosx:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install dependencies
+      run : |
+        brew install gcc@10 libxml2
+    
+    - name: Compile libClp
+      run: |
+        chmod +x coinbrew
+        ./coinbrew fetch Clp@1.17.6
+        ./coinbrew build Clp --enable-static --no-third-party
+           
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Clp-1.17.6-osx64
+        path: /Users/runner/work/coinbrew/coinbrew/dist/*
+        
+
+  build_windows:
+    runs-on: windows-latest
+    
+    defaults:
+      run:
+        shell: msys2 {0}
+        
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: flex bison make gcc diffutils mingw-w64-x86_64-toolchain mingw-w64-x86_64-python-pip mingw-w64-x86_64-python-numpy mingw-w64-x86_64-lapack mingw-w64-x86_64-openblas mingw-w64-x86_64-libxml2 mingw-w64-x86_64-cmake
+        
+    - name: Compiling libSBML
+      run: |
+        chmod +x coinbrew
+        ./coinbrew fetch Clp@1.17.6
+        ./coinbrew build Clp --enable-static --no-third-party
+           
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Clp-1.17.6-win64
+        path: D:\a\coinbrew/coinbrew/dist/*
+        
