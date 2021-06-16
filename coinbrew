@@ -1106,9 +1106,9 @@ function invoke_make {
     shift
     if [ $v = 1 ]; then
         set +e
-        $sudo $MAKE -j $jobs $@ > /dev/null 2>&1
+        $sudo $MAKE -j $jobs $@ 
         if [ $? -ne 0 ]; then
-            $sudo $MAKE -j $jobs $@ > /dev/null
+            $sudo $MAKE -j $jobs $@
             echo
             echo "Build failed, see error output above"
             echo
@@ -1117,9 +1117,9 @@ function invoke_make {
         set -e
     elif [ $v = 2 ]; then
         set +e
-        $sudo $MAKE -j $jobs $@ 2> /dev/null
+        $sudo $MAKE -j $jobs $@ 
         if [ $? -ne 0 ]; then
-            $sudo $MAKE -j $jobs $@ > /dev/null
+            $sudo $MAKE -j $jobs $@ 
             echo
             echo "Build failed, see error output above"
             echo

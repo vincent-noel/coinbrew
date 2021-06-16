@@ -37,7 +37,7 @@ jobs:
       run: |
         chmod +x coinbrew
         ./coinbrew fetch Clp@1.17.6
-        ./coinbrew build Clp --enable-static --no-third-party
+        CXX=g++-10 ./coinbrew build Clp --enable-static --no-third-party
         mv dist/lib/libClp.a dist/lib/libClp-static.a
         mv dist/lib/libCoinUtils.a dist/lib/libCoinUtils-static.a
            
