@@ -56,7 +56,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         update: true
-        install: flex bison make gcc diffutils mingw-w64-x86_64-toolchain mingw-w64-x86_64-python-pip mingw-w64-x86_64-python-numpy mingw-w64-x86_64-lapack mingw-w64-x86_64-openblas mingw-w64-x86_64-libxml2 mingw-w64-x86_64-cmake git
+        install: flex bison make gcc diffutils mingw-w64-x86_64-toolchain mingw-w64-x86_64-python-pip mingw-w64-x86_64-python-numpy mingw-w64-x86_64-lapack mingw-w64-x86_64-openblas mingw-w64-x86_64-libxml2 mingw-w64-x86_64-cmake git patch
         
     - name: Compiling libSBML
       run: |
